@@ -1,41 +1,39 @@
-import React from 'react'
+import React from 'react';
 import './CheckoutProduct.css'
-import { useStateValue } from './StateProvider'
+import { useStateValue } from "./StateProvider";
 
-function CheckoutProduct({id, image, title, price, rating}) {
-  const [{basket},dispatch] =useStateValue()
+function CheckoutProduct({ id, image, title, price, rating }) {
+    const [{ basket }, dispatch] = useStateValue();
 
-    const removeFromBasket=()=>{
-        //remove items from basket
+    const removeFromBasket = () => {
+        // remove the item from the basket
         dispatch({
-            type:'REMOVE_FROM_BASKET',
-            id:id,
+            type: 'REMOVE_FROM_BASKET',
+            id: id,
         })
+    }
 
-  }
     return (
-        <div className="checkoutProduct">
-            <img className="checkoutProduct__image" src={image}/>
-        <div className="checkoutProduct__info">
-            <p className="checkotproduct__title">
-                {title}
-            </p>
-            <p className="checkoutProduct__price">
-                <small>$</small>
-                <strong>{price}</strong>
-            </p>
-            <div className="checkoutproduct__rating">
-            {Array(rating)
-                 .fill()
-                 .map((_,i)=>(
-                    <p>⭐</p> 
-                 ))}
+        <div className='checkoutProduct'>
+            <img className='checkoutProduct__image' src={image} />
+
+            <div className='checkoutProduct__info'>
+                <p className='checkoutProduct__title'>{title}</p>
+                <p className="checkoutProduct__price">
+                    <small>$</small>
+                    <strong>{price}</strong>
+                </p>
+                <div className="checkoutProduct__rating">
+                    {Array(rating)
+                    .fill()
+                    .map((_, i) => (
+                        <p>🌟</p>
+                    ))}
+                </div>
+                <button onClick={removeFromBasket}>Remove from Basket</button>
             </div>
-             <button onClick={removeFromBasket}>Remove from product</button>     
-          </div>
-        
         </div>
     )
 }
 
-export default CheckoutProduct 
+export default CheckoutProduct
